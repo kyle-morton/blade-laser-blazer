@@ -1,0 +1,45 @@
+﻿@page "/teams"
+
+@inject Core.Services.ITeamService TeamService
+
+<h4>MLB Teams</h4>
+
+@if (teams == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Nickname</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var team in teams)
+            {
+                <tr>
+                    <td>@team.Location</td>
+                    <td>@team.NickName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+@code {
+    private List<Core.Data.Models.Team> teams { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        teams = await TeamService.GetAsync();
+    }
+
+    protected async Task LoadMore()
+    {
+
+    }
+}

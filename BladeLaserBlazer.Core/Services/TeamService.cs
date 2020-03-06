@@ -1,5 +1,6 @@
 ﻿using BladeLaserBlazer.Core.Data;
 using BladeLaserBlazer.Core.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,7 +21,6 @@ namespace BladeLaserBlazer.Core.Services
 
         public TeamService(BLBDbContext context) : base(context)
         {
-
         }
 
         public Task<Team> CreateAsync(Team team)
@@ -28,14 +28,14 @@ namespace BladeLaserBlazer.Core.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<Team>> GetAsync()
+        public async Task<List<Team>> GetAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Teams.ToListAsync();
         }
 
-        public Task<Team> GetAsync(int id)
+        public async Task<Team> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Teams.SingleOrDefaultAsync(t => t.Id == id);
         }
 
         public Task<Team> UpdateAsync(Team team)
