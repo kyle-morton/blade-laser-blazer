@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BladeLaserBlazer.Core.Migrations
+namespace BladeLaserBlazer.Core.Data.Migrations
 {
     [DbContext(typeof(BLBDbContext))]
-    [Migration("20200305065123_init")]
+    [Migration("20200306032310_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
