@@ -28,18 +28,33 @@ else
         </tbody>
     </table>
 
+    @if (CanLoadMore)
+    {
+        <button class="btn btn-primary" @onclick="LoadMore">Load More...</button>
+    }
+
+
 }
 
 @code {
     private List<Core.Data.Models.Team> teams { get; set; }
+    private int Offset = 0;
+    private readonly int Count = 5;
+    private bool CanLoadMore = true;
 
     protected override async Task OnInitializedAsync()
     {
-        teams = await TeamService.GetAsync();
+
+        teams = await TeamService.GetAsync(Count, Offset);
+        Offset += 5;
     }
 
     protected async Task LoadMore()
     {
+        var newTeams = await TeamService.GetAsync(Count, Offset);
+        Offset += 5;
+        CanLoadMore = newTeams.Count == Count;
 
+        teams.AddRange(newTeams);
     }
 }

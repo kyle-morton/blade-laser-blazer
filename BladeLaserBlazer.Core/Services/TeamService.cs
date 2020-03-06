@@ -3,6 +3,7 @@ using BladeLaserBlazer.Core.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace BladeLaserBlazer.Core.Services
 {
     public interface ITeamService
     {
-        Task<List<Team>> GetAsync();
+        Task<List<Team>> GetAsync(int count, int offset);
         Task<Team> GetAsync(int id);
         Task<Team> CreateAsync(Team team);
         Task<Team> UpdateAsync(Team team);
@@ -28,9 +29,12 @@ namespace BladeLaserBlazer.Core.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<Team>> GetAsync()
+        public async Task<List<Team>> GetAsync(int count, int offset)
         {
-            return await _context.Teams.ToListAsync();
+            return await _context.Teams
+                .Skip(offset)
+                .Take(count)
+                .ToListAsync();
         }
 
         public async Task<Team> GetAsync(int id)
