@@ -1,0 +1,20 @@
+﻿@page "/teams/create"
+@inherits CreateBase
+
+
+
+<h3>Create</h3>
+
+<form novalidate>
+    <div class="form-group">
+        <div class="form-row">
+            <label>City</label>
+            <input class="form-control-sm" @bind="vm.Location" />
+        </div>
+        <div class="form-row">
+            <label>Name</label>
+            <input class="form-control-sm" @bind="vm.Name" />
+        </div>
+        <button class="btn btn-primary" @onclick="CreateTeam">Create</button>
+    </div>
+</form>

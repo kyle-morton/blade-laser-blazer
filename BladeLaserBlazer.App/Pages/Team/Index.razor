@@ -3,6 +3,8 @@
 
 <h4>MLB Teams</h4>
 
+<a href="/teams/create" class="btn btn-primary">Create Team</a>
+
 @if (teams == null)
 {
     <p>Loading...</p>
@@ -21,13 +23,13 @@ else
             {
                 <tr>
                     <td>@team.Location</td>
-                    <td>@team.NickName</td>
+                    <td>@team.Name</td>
                 </tr>
             }
         </tbody>
     </table>
 
-    @if (CanLoadMore)
+    @if (canLoadMore)
     {
         <button class="btn btn-primary" @onclick="LoadMore">Load More...</button>
     }

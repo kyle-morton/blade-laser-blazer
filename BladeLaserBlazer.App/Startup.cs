@@ -1,5 +1,6 @@
 using BladeLaserBlazer.Core.Data;
 using BladeLaserBlazer.Core.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,8 @@ namespace BladeLaserBlazer.App
             services.AddServerSideBlazor();
 
             services.AddTransient<ITeamService, TeamService>();
+
+            ValidatorOptions.CascadeMode = CascadeMode.Continue;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
