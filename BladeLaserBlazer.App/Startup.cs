@@ -1,4 +1,3 @@
-using BladeLaserBlazer.App.Data;
 using BladeLaserBlazer.Core.Data;
 using BladeLaserBlazer.Core.Services;
 using Microsoft.AspNetCore.Builder;
@@ -36,7 +35,6 @@ namespace BladeLaserBlazer.App
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
             services.AddTransient<ITeamService, TeamService>();
         }
